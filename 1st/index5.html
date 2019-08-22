@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <ul>
+            <li v-for="(orts, index) in ortsuud">{{ orts }} : ({{ index }})</li>
+        </ul>
+
+        <hr>
+            <span v-for="(number, i) in 20">{{number}} : ({{i}})</span>
+        <hr>
+
+        <ul>
+            <li v-for="khun in khumuus">
+                <span v-for="(value, key, index) in khun"> {{key}} : {{ value }} ({{index}}) </span>
+            </li>
+        </ul>
+        <hr>
+
+        <template v-for="(orts, index) in ortsuud">
+            <h1>{{ orts }}</h1>
+            <p>{{ index }}</p>
+        </template>
+
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                ortsuud: ['төмс', 'давс', 'гурил', 'мах'],
+                khumuus:[
+                    {ner: 'Болд', nas:'3', ungu:'Улаан'},
+                    {ner: 'Лхагва', nas:'33', ungu:'Хар'},
+                    {ner: 'Дулмаа', nas:'333', ungu:'Ногоон'}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
