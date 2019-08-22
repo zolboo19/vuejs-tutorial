@@ -11,8 +11,10 @@
     
     <div id="app">
         <ul>
-            <li v-for="(orts, index) in ortsuud">{{ orts }} : ({{ index }})</li>
+            <li v-for="(orts, index) in ortsuud" :key="orts"> {{ orts }} : ({{ index }})</li>
         </ul>
+
+        <button @click="ortsuud.push('Халуун ногоо')">Орц нэмэх</button>
 
         <hr>
             <span v-for="(number, i) in 20">{{number}} : ({{i}})</span>
