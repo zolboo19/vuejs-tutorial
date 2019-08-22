@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p v-if="show">Энд байгаа текст true байх үед харагдана.</p>
+        <p v-else>Энд байгаа текст үргэлж харагдана.</p>
+        <p v-show="show">V-SHOW харагдана.</p>
+        <button @click="show = !show">Холбоосыг өөрчлөх</button>
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                show: true
+            }
+        });
+    </script>
+</body>
+</html>
