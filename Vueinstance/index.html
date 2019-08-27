@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <h1 ref="myParagraph">{{ title }}</h1>
+        <hr>
+        <button @click="show" ref="myButton">Текстийг харуулах</button>
+        <hr>
+        <p v-if="showText">Энэ текст нөхцөл шалгаж, түүний дараа харагдана.</p>
+    </div>
+
+    <div id="app2">
+        <h1>{{ title }}</h1>
+        <button @click="onChange">Гарчиг 1-ын утгыг өөрчилье.</button>
+        
+    </div>
+
+    <div id="app3">
+    
+    </div>
+
+    <div id="components-demo">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+      </div>
+    
+
+    <script>
+
+        var data = {
+                title: 'Гарчиг 1',
+                showText: false,
+            }
+
+        var vm1 = new Vue({
+            
+            data: data,
+            methods:{
+                show: function(){
+                    this.showText = true;
+                    this.updateTitle('Гарчиг шинэчлэв...');
+                    //console.log(this.$refs);
+                    this.$refs.myButton.innerText = "Товчны текстийг өөрчлөв.";
+                },
+                updateTitle: function(title){
+                    this.title = title;
+                }
+            },
+            computed:{
+                lowercaseTitle: function(){
+                    return this.title.toLowerCase();
+                }
+            },
+            watch:{
+                title: function(value){
+                    alert("Гарчиг өөрчлөгдсөн, шинэ утга нь: " + value);
+                }
+            }
+        })
+
+        vm1.$mount('#app1');
+
+        
+
+        //vm1.newProp = 'Шинэ түлхүүр....';
+        console.log(vm1);
+        console.log(vm1.$data === data);
+
+        // setTimeout(function(){
+        //     vm1.title = "Гарчиг 3";
+        // }, 2000);
+        
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data:{
+                title: 'Гарчиг 2'
+            },
+            methods:{
+                onChange: function(){
+                    vm1.title = this.title;
+                }
+            }
+        });
+
+        var vm3 = new Vue({
+            el: '#app3'
+        });
+        new Vue({ el: '#components-demo' })
+
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                count: 0
+                }
+            },
+            template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+            })
+
+        //vm3.$mount('#app3');
+
+        //document.getElementById('app3').append(vm3.$el);
+
+    </script>
+</body>
+</html>
