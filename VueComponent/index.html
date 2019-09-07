@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <my-title></my-title> 
+        <hr>
+        <my-title></my-title>
+    </div>
+
+    <div id="app2">
+            <my-title></my-title> 
+            <hr>
+            <my-title></my-title>
+        </div>
+    
+    <script>
+        //var data = { title: 'Гарчиг-1'};
+
+        //Vue.component('selector-tag', {});
+        var cmp = {
+            data: function(){
+                return {
+                    title: 'Гарчиг-1'
+                };
+            },
+            template:'<p>Гарчиг:(<button @click="changeTitle">Гарчиг өөрчлөх</button>) {{ title }}</p>',
+            methods:{
+                changeTitle:function(){
+                    this.title = 'Өөрчлөгдсөн гарчиг';
+                }
+            }
+        };
+        new Vue({
+            el: '#app1',
+            components:{
+                'my-title' : cmp
+            }
+        });
+
+        new Vue({
+            el: '#app2',
+            components:{
+                'my-title' : cmp
+            }
+        });
+    </script>
+</body>
+</html>
