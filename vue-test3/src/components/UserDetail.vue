@@ -3,11 +3,13 @@
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
         <p>Хэрэглэгчийн нэр: {{ switchName() }}</p>
+        <p>User age:{{ userAge }}</p>
         <button @click="resetFn()">Нэр дахин тохируулах</button>
     </div>
 </template>
 
 <script>
+import { eventBus } from '../main';
     export default{
         props: {
             myName: {
@@ -15,7 +17,8 @@
                 //required: true
                 default: 'Tsogoo'
             },
-            resetFn: Function
+            resetFn: Function,
+            userAge: Number
         },
         methods:{
             switchName(){
@@ -25,6 +28,11 @@
                 this.myName = 'Zolboo';
                 this.$emit('nameWasReset', this.myName)
             }
+        },
+        created(){
+            eventBus.$on('ageWasEdited', (age) => {
+                this.userAge = age
+            })
         }
     }
 </script>
