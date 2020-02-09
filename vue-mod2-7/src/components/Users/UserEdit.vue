@@ -28,6 +28,17 @@ export default {
         next(false);
       }
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.confirmed) {
+      next();
+    } else {
+      if (confirm("Та итгэлтэй байна уу?")) {
+        next();
+      } else {
+        next(false);
+      }
+    }
   }
 };
 </script>
