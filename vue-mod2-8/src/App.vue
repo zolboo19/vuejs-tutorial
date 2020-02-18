@@ -12,6 +12,12 @@
           <input type="email" class="form-control" v-model="user.email" />
         </div>
         <button class="btn btn-primary" @click="submit()">Илгээх</button>
+        <hr />
+        <input type="text" class="form-control" v-model="mode" />
+        <button class="btn btn-success" @click="fetchData()">Өгөгдөл авах</button>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="u in users">{{ u.name }} - {{ u.email }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -25,13 +31,62 @@ export default {
       user: {
         name: "",
         email: ""
-      }
+      },
+      users: [],
+      resource: {},
+      mode: "data"
     };
   },
   methods: {
     submit() {
-      console.log(this.user);
+      //console.log(this.user);
+      // this.$http.post("data.json", this.user).then(
+      //   response => {
+      //     console.log(response);
+      //     console.log(response.status);
+      //     console.log(response.statusText);
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
+      this.resource.savePost(this.user);
+    },
+    fetchData() {
+      // this.$http
+      //   .get("data.json")
+      //   .then(response => {
+      //     //console.log(response);
+      //     return response.json();
+      //   })
+      //   .then(data => {
+      //     const resultArray = [];
+      //     for (let key in data) {
+      //       resultArray.push(data[key]);
+      //     }
+      //     this.users = resultArray;
+      //   });
+      this.resource
+        .getPost({ mode: this.mode })
+        .then(response => {
+          //console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data) {
+            resultArray.push(data[key]);
+          }
+          this.users = resultArray;
+        });
     }
+  },
+  created() {
+    const customActions = {
+      getPost: { method: "GET" },
+      savePost: { method: "POST", url: "myText.json" }
+    };
+    this.resource = this.$resource("{mode}.json", {}, customActions);
   }
 };
 </script>
