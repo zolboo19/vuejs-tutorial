@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button class="btn btn-primary" @click="increment">Ихэсгэх</button>
-    <button class="btn btn-primary" @click="decrement">Багасгах</button>
+    <button class="btn btn-primary" @click="increment">Another Ихэсгэх</button>
+    <button class="btn btn-primary" @click="decrement">Another Багасгах</button>
   </div>
 </template>
 
