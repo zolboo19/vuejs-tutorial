@@ -1,6 +1,9 @@
 <template>
   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
     <h1>Тоолуур</h1>
+    <h2>Alert</h2>
+    <h3 :style="color">{{message}}</h3>
+
     <app-result></app-result>
     <app-another-result></app-another-result>
     <hr />
@@ -21,6 +24,14 @@ export default {
     appAnotherCounter: anotherCounter,
     appResult: Result,
     appAnotherResult: anotherResult
+  },
+  computed: {
+    color() {
+      return `color: ${this.$store.state.alertModule.color}`;
+    },
+    message() {
+      return this.$store.state.alertModule.message;
+    }
   }
 };
 </script>
