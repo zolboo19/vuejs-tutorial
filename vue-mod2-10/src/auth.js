@@ -3,7 +3,6 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "https://identitytoolkit.googleapis.com/v1"
 });
-
 // Alter defaults after instance has been created
 //instance.defaults.headers.common["COMEDATA"] = "SOME_DATA";
 
