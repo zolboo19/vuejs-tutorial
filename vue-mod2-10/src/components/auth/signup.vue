@@ -87,14 +87,10 @@ export default {
         terms: this.terms
       };
       console.log(formData);
-      axios
-        .post("/accounts:signUp?key=AIzaSyAfDlpTMnYznjmIaL-UtfptCb-WW8iDnvM", {
-          email: formData.email,
-          password: formData.password,
-          returnSecureToken: true
-        })
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+      this.$store.dispatch("signup", {
+        email: formData.email,
+        password: formData.password
+      });
     }
   }
 };
